@@ -1,0 +1,66 @@
+{% extends '_layouts/base.html' %}
+
+{% block content %}
+<!--BreadCrumbs-->
+{% include '_layouts/breadcrumbs.html' %}
+<!--EndBreadCrumbs-->
+<div class="content-panel">
+    <div class="jumbotron container">
+        <h1 class="display-5">{{ title }}</h1>
+        <hr>
+        <main class="form-signin w-100 m-auto">
+            <form id="form1" action="/accounts/sign_up" method="post" onsubmit="return true">
+                {% csrf_token %}          
+                <div class="form-floating">
+                    <label for="login">Введіть логін</label>
+                    <input type="text" class="form-control" id="login" name="login" placeholder="Введіть логін ..." required>
+                    <div id="login_mess" class="mess"></div>
+                </div>
+
+                <div class="delimetr"></div>
+                
+                <div class="form-floating">
+                    <label for="pass1">Введіть пароль</label>
+                    <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Введіть пароль ..." required>
+                    
+                    <div id="pass1_mess" class="mess"></div> 
+                </div>
+                
+                <div class="delimetr"></div>
+                
+                <div class="form-floating">
+                    <label for="pass2">Підтвердіть пароль</label>
+                    <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Підтвердіть пароль ..." required>
+                    
+                    <div id="pass2_mess" class="mess"></div> 
+                </div>
+                
+                <div class="delimetr"></div>
+                
+                <div class="form-floating">
+                    <label for="login">Введіть email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="email@gmail.com" required>
+                    
+                    <div id="email_mess" class="mess"></div>
+                </div>
+                
+                <p>
+                    <button class="w-50 btn btn btn-primary mt-5" type="submit">Відправити</button>
+                </p>
+            </form>
+        </main>      
+    </div>
+</div>
+<style>
+    #form1 {
+        width: 350px;
+        margin: 50px auto;
+    }
+    footer {
+        margin-top: 30px;
+    }
+    .delimetr {
+        height: 5px;
+    }
+</style>
+{% endblock content %}

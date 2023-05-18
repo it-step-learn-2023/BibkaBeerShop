@@ -1,0 +1,54 @@
+{% extends '_layouts/base.html' %}
+
+
+
+{% block content %}
+<!--BreadCrumbs-->
+{% include '_layouts/breadcrumbs.html' %}
+<!--EndBreadCrumbs-->
+  <section class="ftco-section">
+    <div class="container">
+      <div class="row d-flex">
+        {% for post in select_posts %}
+          <div class="col-lg-6 d-flex align-items-stretch ftco-animate">
+              <div class="blog-entry d-md-flex">
+                  <a href="/blog/singl_post/{{ post.id }}" class="block-20 img" style="background-image: url(../media/{{ post.image }});">
+              </a>
+              <div class="text p-4 bg-light">
+                  <div class="meta">
+                      <p><span class="fa fa-calendar"></span> {{ post.publish }}</p>
+                  </div>
+                <h3 class="heading mb-3"><a href="/blog/singl_post/{{ post.id }}">{{ post.title }}</a></h3>
+                <p>{{ post.about }}</p>
+                <a href="/blog/singl_post/{{ post.id }}" class="btn-custom">Продовжити <span class="fa fa-long-arrow-right"></span></a>
+                    {% if user.username == 'superbiba' %}
+                      <p>
+                        <a href="/blog/singl_post/{{ post.id }}" class="btn-custom">Редагувати <span class="fa fa-long-arrow-right"></span></a>
+                        <a href="/blog/singl_post/{{ post.id }}" class="btn-custom">Видалити <span class="fa fa-long-arrow-right"></span></a>
+                      </p>
+                    {% endif %}
+                </div>
+              </div>
+          </div>
+          {% endfor %}
+
+        <div class="row mt-5">
+          <div class="col text-center">
+            <div class="block-27">
+              <ul>
+                {% if select_posts.has_previous %}
+                <li><a href="?page=1">1</a></li>
+                <li><a href="?page={{ select_posts.previous_page_number }}">&lt;</a></li>
+                {% endif %}
+                <li class="active"><span>{{ select_posts.number }}</span></li>
+                {% if select_posts.has_next %}
+                <li><a href="?page={{ select_posts.next_page_number }}">&gt;</a></li>
+                <li><a href="?page={{ select_posts.paginator.num_pages }}">{{ select_posts.paginator.num_pages }}</a></li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>	
+{% endblock content %}

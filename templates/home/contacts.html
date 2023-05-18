@@ -1,0 +1,104 @@
+{% extends '_layouts/base.html' %}
+
+{% block content %}
+<!--BreadCrumbs-->
+{% include '_layouts/breadcrumbs.html' %}
+<!--EndBreadCrumbs-->
+        <section class="ftco-section bg-light">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <div class="wrapper px-md-4">
+                            <div class="row mb-5">
+                                <div class="col-md-3">
+                                    <div class="dbox w-100 text-center">
+                                <div class="icon d-flex align-items-center justify-content-center">
+                                    <span class="fa fa-map-marker"></span>
+                                </div>
+                                <div class="text">
+                                <p><span>Адресса:</span> Україна м.Київ вул.Велика Васильківська 122/133</p>
+                                </div>
+                            </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="dbox w-100 text-center">
+                                <div class="icon d-flex align-items-center justify-content-center">
+                                    <span class="fa fa-phone"></span>
+                                </div>
+                                <div class="text">
+                                <p><span>Телефон:</span> <a href="tel://1234567920">+380 95 55 77 186</a></p>
+                                </div>
+                            </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="dbox w-100 text-center">
+                                <div class="icon d-flex align-items-center justify-content-center">
+                                    <span class="fa fa-paper-plane"></span>
+                                </div>
+                                <div class="text">
+                                <p><span>Email:</span> <a href="mailto:info@yoursite.com">bibkabeershop@gmail.com</a></p>
+                                </div>
+                            </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="dbox w-100 text-center">
+                                <div class="icon d-flex align-items-center justify-content-center">
+                                    <span class="fa fa-globe"></span>
+                                </div>
+                                <div class="text">
+                                <p><span>Наш сайт</span> <a href="/">bibkabeershop.com.ua</a></p>
+                                </div>
+                            </div>
+                                </div>
+                            </div>
+                            <div class="row no-gutters">
+                                <div class="col-md-7">
+                                    <div class="contact-wrap w-100 p-md-5 p-4">
+                                        <h3 class="mb-4">Contact Us</h3>
+                                        <form method="POST" id="contactForm" name="contactForm" class="contactForm">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="label" for="name">Їм'я</label>
+                                                        <input type="text" class="form-control" name="name" id="name" placeholder="Ваше ім'я...">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6"> 
+                                                    <div class="form-group">
+                                                        <label class="label" for="email">Ваш Email</label>
+                                                        <input type="email" class="form-control" name="email" id="email" placeholder="Ваш Email...">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="label" for="subject">Тема</label>
+                                                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Тема...">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="label" for="#">Повідомлення</label>
+                                                        <textarea name="message" class="form-control" id="message" cols="30" rows="4" placeholder="Повідомлення..."></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="submit" value="Відправити" class="btn btn-primary">
+                                                        <div class="submitting"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 order-md-first d-flex align-items-stretch">
+                                    <div id="map" class="map"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock content %}

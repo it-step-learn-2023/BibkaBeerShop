@@ -1,0 +1,45 @@
+{% extends '_layouts/base.html' %}
+
+{% block content %}
+<!--BreadCrumbs-->
+{% include '_layouts/breadcrumbs.html' %}
+<!--EndBreadCrumbs-->
+<div class="content-panel">
+    <div class="jumbotron container">
+            <form id="form1" action="/accounts/sign_in" method="post" onsubmit="return true">
+                {% csrf_token %}          
+                <div class="form-floating">
+                    <label for="login">Логін</label>
+                    <input type="text" class="form-control" id="login" name="login" placeholder="Введіть логін ...">
+                    <div id="login_mess" class="mess"></div>
+                </div>
+                <div class="delimetr"></div>
+                <div class="form-floating">
+                    <label for="pass1">Пароль</label>
+                    <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Введіть пароль ...">
+                    <div id="pass1_mess" class="mess"></div> 
+                </div>
+                <div class="checkbox mb-3 mt-4">
+                    <label>
+                    <input type="checkbox" name="remember" value="yes"> Запам'ятати мене
+                    </label>
+                </div>
+                <p>
+                    <button class="w-50 btn btn btn-primary" type="submit">Відправити</button>
+                </p>
+            </form>
+    </div>
+</div>
+<style>
+    #form1 {
+        width: 350px;
+        margin: 50px auto;
+    }
+    footer {
+        margin-top: 10px;
+    }
+    .delimetr {
+        height: 5px;
+    }
+</style>
+{% endblock content %}

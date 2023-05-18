@@ -1,0 +1,16 @@
+{% extends '_layouts/base.html' %}
+
+{% block content %}
+<!--BreadCrumbs-->
+{% include '_layouts/breadcrumbs.html' %}
+<!--EndBreadCrumbs-->
+<div class="content-panel">
+    <div class="jumbotron container">
+        <hr>
+        <h5 style="color: {{ color }}">
+            {{ message }}
+        </h5>
+        <hr>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends '_layouts/base.html' %}
+
+{% block content %}
+<!--BreadCrumbs-->
+{% include '_layouts/breadcrumbs.html' %}
+<!--EndBreadCrumbs-->
+<div class="content-panel">
+    <div class="jumbotron container">
+        <h1 class="display-5">{{ page_title }}</h1>
+        <hr>
+        <br>
+        <h5>Контент сторінки {{ page_title }} ....</h5>
+    </div>
+</div>
+{% endblock content %}
