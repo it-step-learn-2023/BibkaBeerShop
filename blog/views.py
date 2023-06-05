@@ -6,7 +6,7 @@ from .models import Post
 def index(request):
     all_posts = Post.objects.all()
     #
-    paginator = Paginator(all_posts, 2)
+    paginator = Paginator(all_posts, 4)
     page_number = request.GET.get('page')
     page_object = paginator.get_page(page_number)
     #

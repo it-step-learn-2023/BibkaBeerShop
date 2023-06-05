@@ -1,0 +1,51 @@
+{% extends '_layouts/base.html' %}
+
+
+{% block content %}
+{% load static%}
+<!--BreadCrumbs-->
+{% include '_layouts/breadcrumbs.html' %}
+<!--EndBreadCrumbs-->
+<div class="content-panel">
+    <div class="jumbotron container">
+        <h1 class="display-5">{{ page_title }}</h1>
+        <hr>
+        <br>
+        <div style="text-align: left;">
+            <form action="/catalog/add_product" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div id="form_template">
+                    {% for field in form %}
+                        <div class="form-group">
+                            {{ field.label_tag}}
+                            <div>{{ field }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <p style="margin-top: 20px;">
+                    <input type="submit" value="Відправити" class="btn btn-success my-btn">
+                    <input type="reset" value="Очистити" class="btn btn-danger my-btn">
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+<style>
+    .from-group input {
+        width: 50%;
+        height: 30px;
+    }
+    .from-group textarea {
+        width: 50%;
+    }
+    .my-btn {
+        width: 150px;
+    }
+    footer {
+        margin-top: 20px;
+    }
+</style>
+
+
+
+{% endblock content %}
