@@ -44,7 +44,7 @@
                     </a>
                 {% endif %}
             </p>
-
+            <input type="hidden" id="user-id" value="{{ user.id }}">
         </div>
             </div>
         </div>
@@ -57,21 +57,25 @@
         <div class="order-lg-last btn-group">
         <a href="#" class="btn-cart dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="flaticon-shopping-bag"></span>
-            <div class="d-flex justify-content-center align-items-center"><small>3</small></div>
+            <div class="d-flex justify-content-center align-items-center" id="cart-count"><small>0</small></div>
         </a>
         <div class="dropdown-menu dropdown-menu-right">
-                    <div class="dropdown-item d-flex align-items-start" href="#">
-                        <div class="img" style="background-image: url(../static/images/prod-1.jpg);"></div>
-                        <div class="text pl-3">
-                            <h4>Bacardi 151</h4>
-                            <p class="mb-0"><a href="#" class="price">$25.99</a><span class="quantity ml-3">Quantity: 01</span></p>
-                        </div>
-                    </div>
-                    <a class="dropdown-item text-center btn-link d-block w-100" href="cart.html">
-                        Показати все
-                        <span class="ion-ios-arrow-round-forward"></span>
-                    </a>
+            <div class="dropdown-item d-flex align-items-start" href="#">
+                <div class="img" style="background-image: url(/static/images/icon_main.png);"></div>
+                <div class="text pl-3">
+                    <h4>Кошик {{ user.username }}</h4>
+                    <p class="mb-0">
+                        <a class="price" id="_count">00.00 грн</a>
+                        <hr>
+                        <a href="#" class="price" id="_total">00.00 грн</a>
+                    </p>
                 </div>
+            </div>
+            <a class="dropdown-item text-center btn-link d-block w-100" href="/orders">
+                Показати все
+                <span class="ion-ios-arrow-round-forward"></span>
+            </a>
+            </div>
         </div>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,4 +93,5 @@
         </div>
     </div>
 </nav>
-
+<script src="{% static 'js/cart.js' %}"></script>
+<script src="{% static 'js/cart_display.js' %}"></script>

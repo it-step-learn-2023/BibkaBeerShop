@@ -1,0 +1,99 @@
+{% extends '_layouts/base.html' %}
+
+{% block content %}
+{% load static %}
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/static/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-end justify-content-center">
+        <div class="col-md-9 ftco-animate mb-5 text-center">
+            <p class="breadcrumbs mb-0"><span class="mr-2"><a href="index.html">{{ app }} <i class="fa fa-chevron-right"></i></a></span> <span>{{title}} <i class="fa fa-chevron-right"></i></span></p>
+          <h2 class="mb-0 bread">{{title}}</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ftco-section">
+      <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-xl-10 ftco-animate">
+                      <form id="confirm-form" action="/orders/bill/{{ init_list }}" class="billing-form" method="post">
+                        {% csrf_token %}
+                          <h3 class="mb-4 billing-heading">Деталі замовлення</h3>
+                            <div class="row align-items-end">
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label for="firstname">Ваше ім'я</label>
+                                    <input type="text" id="name" name="name" class="form-control" placeholder="" required>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                      <label for="lastname">Призвище</label>
+                                    <input type="text" id="surname" name="surname"  class="form-control" placeholder="" required>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label for="firstname">Адресса</label>
+                                    <input type="text" id="adress" name="adress" class="form-control" placeholder="" required>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                      <label for="lastname">Телефон</label>
+                                    <input type="phone" id="phone" name="phone"  class="form-control" placeholder="" required>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label for="firstname">E-mail</label>
+                                    <input type="email" id="email" name="email" class="form-control" placeholder="" required>
+                                  </div>
+                                </div>
+                              <div class="w-100">
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <input type="reset" id="reset" value="Очистити" class="btn btn-primary py-3 px-4">
+                                  </div>
+                                </div>
+                              </div>
+                                <div class="col-md-12">
+                                </div>
+                        </div>
+                      
+                <div class="row mt-5 pt-3 d-flex">
+                    <div class="col-md-6 d-flex">
+                        <div class="cart-detail cart-total p-3 p-md-4">
+                            <h3 class="billing-heading mb-4">Чек ліст</h3>
+                              <hr>
+                              {% for ord in final_list %}
+                                <p><span>{{ord.product_name}} / {{ord.product_price}} грн - {{ord.product_count }} шт</span></p>
+                              {%endfor%}
+                              <hr>
+                              <p class="d-flex total-price">
+                                  <span>Усього до сплати -</span>
+                                    <span id="total">{{ total_price }} грн</span> 
+                              </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="cart-detail p-3 p-md-4">
+                                  <p>
+                                    <p><input type="submit" id="submit" value="Підтвердити" class="btn btn-primary my-btn"></p>
+                                    <p><a href="/orders/" class="btn btn-dark py-3 px-4" style="margin-top: 20px;">Повернутись до кошика</a></p>
+                                  </p>
+                          </div>
+                        <p></p>
+                    </div>
+              </form><!-- END -->
+            </div>
+        </div> <!-- .col-md-8 -->
+      </div>
+      </div>
+  </section>
+
+
+
+{% endblock content %}

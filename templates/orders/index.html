@@ -1,5 +1,93 @@
 {% extends '_layouts/base.html' %}
 
 {% block content %}
-
+{% load static %}
+<!--BreadCrumbs-->
+{% include '_layouts/breadcrumbs.html' %}
+<!--EndBreadCrumbs-->
+        <div class="section page-content">
+            <div class="container" id="orders1">
+                <div class="row">
+                    <!-- ////////////////////////////////// -->
+                    <div class="content-box" style="text-align: center;">
+                        <table id="orders-table" class="table table-striped">
+                            <thead class="thead-primary">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Замовлення</th>
+                                    <th>Товар</th>
+                                    <th>Ціна</th>
+                                    <th>Дата</th>
+                                    <th>Кількість</th>
+                                    <th>Вибір</th>
+                                    <th>Управління</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for order in user_orders %}
+                                    <tr>
+                                        <td class="id-cell">{{ order.id}}</td>
+                                        <td><img src="/media/{{ order.product.photo }}" alt="" style="width: 50px; height: 50px;"></td>
+                                        <td>{{ order.product.name }}</td>
+                                        <td class="price-cell">{{ order.product.price }}</td>
+                                        <td>{{ order.date }}</td>
+                                        <td class="count-cell">
+                                            <input type="number" class="count" id="count" name="count" min="1" value="{{ order.count }}">
+                                            <input type="hidden" id="count-2" value="{{ order.product.id }}">
+                                            <input type="hidden" id="ord-id" value="{{ order.id}}">
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" class="check" value="yes" checked>
+                                        </td>
+                                        <td>
+                                            
+                                            <input type="hidden" value="1">
+                                            <input type="hidden" value="{{ order.id }}">
+                                            <button class="btn btn-sm btn-primary del-btn">Видалити</button>
+                                        </td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <div class="row justify-content-end">
+                          <div class="col col-lg-5 col-md-6 mt-5 cart-wrap ftco-animate">
+                            <div class="cart-total mb-3">
+                              <h3>Сумма замовлення</h3>
+                              <hr>
+                              <p class="d-flex total-price">
+                                <span>Загальна сума до сплати</span>
+                                <span id="total">0.00 грн</span> 
+                              </p>
+                            </div>
+                                <div id="count-change">
+                                    <p>
+                                    <a id="bill-btn" href="/orders/bill/1.2.3" class="btn btn-primary">Перейти до оформлення замовлення</a>
+                                </p>
+                                </div>
+                          </div>
+                        </div>
+                    </div>
+                    <!-- ////////////////////////////////// -->
+                </div>
+            </div>
+        </div>
+        <style>
+            #orders-table td {
+                vertical-align: middle;
+            }
+            .count {
+                width: 50px;
+                text-align: center;
+            }
+            input[type="number"]:not([step="any"])::-webkit-inner-spin-button,
+            input[type="number"]:not([step="any"])::-webkit-outer-spin-button {
+                opacity: 1;
+            }
+        </style>
+<script src="{% static 'js/cart_count.js' %}"></script>
+<script src="{% static 'js/calc_order.js' %}"></script>
+<script src="{% static 'js/del_order.js' %}"></script>
 {% endblock content %}

@@ -4,6 +4,7 @@
 <!--BreadCrumbs-->
 {% include '_layouts/breadcrumbs.html' %}
 <!--EndBreadCrumbs-->
+
         <section class="ftco-section bg-light">
             <div class="container">
                 <div class="row justify-content-center">
@@ -54,8 +55,8 @@
                             <div class="row no-gutters">
                                 <div class="col-md-7">
                                     <div class="contact-wrap w-100 p-md-5 p-4">
-                                        <h3 class="mb-4">Contact Us</h3>
-                                        <form method="POST" id="contactForm" name="contactForm" class="contactForm">
+                                        <h3 class="mb-4">Зв'язок з нами</h3>
+                                        <form method="POST" id="contactForm" name="contactForm" class="contactForm" action="contacts">
                                             {% csrf_token %}
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -93,8 +94,9 @@
                                     </div>
                                 </div>
                                 <div class="col-md-5 order-md-first d-flex align-items-stretch">
-                                    <div id="map" class="map"></div>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d1068.8578580575218!2d30.52091587665211!3d50.419000131232266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e3!4m5!1s0x40d4cf3d4d1dcf59%3A0x406c4601433f737e!2z0JLQtdC70LjQutCwINCS0LDRgdC40LvRjNC60ZbQstGB0YzQutCwLCAxMjIsINCa0LjQtdCy!3m2!1d50.4191638!2d30.520903399999998!4m0!5e0!3m2!1sru!2sua!4v1685791181287!5m2!1sru!2sua" width="400" height="555" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>

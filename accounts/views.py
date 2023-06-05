@@ -16,14 +16,11 @@ def sign_in(request):
             'app' : 'accounts' 
         })
     else:
-        # 1
         login_x = request.POST.get('login')
         pass1_x = request.POST.get('pass1')
 
-        # 2
         user = authenticate(request, username=login_x, password=pass1_x)
 
-        # 3
         message = 'report message'
         color = 'report color'
         #
@@ -53,19 +50,19 @@ def sign_up(request):
             'app' : 'accounts'
         })
     else:
-        # 1 - Зчитування даних із форми:
         login_x = request.POST.get('login')
         pass1_x = request.POST.get('pass1')
         email_x = request.POST.get('email')
 
-        # 2 - Додавання користувача до бази даних:
-        user = User.objects.create_user(login_x, email_x, pass1_x) 
-        user.save()
+        try:
+            user = User.objects.create_user(login_x, email_x, pass1_x) 
+            user.save()
+        except:
+            return redirect('/accounts/error')
 
-        # 3 - Формування звіту:
         message = 'report message'
         color = 'report color'
-        #
+
         if user is None:
             message = 'В реєстраціі відмовлено!'
             color = 'red'
@@ -73,7 +70,6 @@ def sign_up(request):
             message = 'Успішна реєестрація'
             color = 'green'
 
-        # 4 - Завантадення сторінкі звітів:
         return render(request, 'accounts/reports.html', context={
             'title' : 'Сторінка звіту',
             'message' : message,
@@ -81,3 +77,10 @@ def sign_up(request):
             'page': 'report',
             'app' : 'accounts' 
         })
+
+def error(request):
+    return render(request, 'accounts/error.html', context={
+        'title' : 'Помилка логіна або емаіла',
+        'page': 'error',
+        'app' : 'accounts'
+    })

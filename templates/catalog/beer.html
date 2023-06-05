@@ -1,0 +1,89 @@
+{% extends '_layouts/base.html' %}
+{% load static%}
+
+{% block content %}
+<!--BreadCrumbs-->
+{% include '_layouts/breadcrumbs.html' %}
+<!--EndBreadCrumbs-->
+    <section class="ftco-section">
+            <div class="container">
+                <div class="row">
+                    <div class="categories">
+                        <h3>Тип товару</h3>
+                            <ul class="p-0">
+                                <li><a href="/catalog/beer">Пиво <span class="fa fa-chevron-right"></span></a></li>
+                            </ul>
+                            <ul class="p-0">
+                                <li><a href="/catalog/wine">Вино <span class="fa fa-chevron-right"></span></a></li>
+                            </ul>
+                            <ul class="p-0">
+                                <li><a href="/catalog/sidr">Сідр <span class="fa fa-chevron-right"></span></a></li>
+                            </ul>
+                            <ul class="p-0">
+                                <li><a href="/catalog/zakys">Закуски <span class="fa fa-chevron-right"></span></a></li>
+                            </ul>
+                            <hr>
+                            <ul class="p-0">
+                                <li><a href="/catalog">Всі товари <span class="fa fa-chevron-right"></span></a></li>
+                            </ul>
+                        </ul>
+                    </div>
+                    <div class="col-md-9">
+                      <!-- All Products -->
+                        <div class="row" id="catalog">
+                            {% for p in select_beer %} 
+                                <div class="col-md-4 d-flex">
+                                    <div class="product ftco-animate">
+                                        <div class="img d-flex align-items-center justify-content-center" style="background-image: url(../media/{{ p.photo }});">
+                                            <div class="desc">
+                                                <p class="meta-prod d-flex">
+                                                    <a href="/catalog/singl_product/{{ p.id }}" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="text text-center">
+                                            {% if p.sales > 40 %}
+                                            <span class="seller">Best Seller</span>
+                                            {% endif %}
+                                            <span class="category">{{ p.category }}</span>
+                                            <h2>{{ p.name }}</h2>
+                                            <p class="mb-0"><span class="price">{{ p.price }} грн</span></p>
+                                        </div>
+                                        <div class="add-to-cart" style="text-align: center;">
+                                            <input type="hidden" id="count-1" value="1">
+                                            <input type="hidden" value="{{ p.id }}">
+                                            <button class="btn btn-dark" ><a href="/catalog/singl_product/{{ p.id }}" style="color: aliceblue;">Деталі</a></button>
+                                            {% if p.quantitiy > 0 %}
+                                                <button id="add-to-cart-btn" class="btn btn-primary"> До кошика</button>
+                                            {% else %}
+                                                <p><span>Нема в наявності</span></p>
+                                            {% endif %}
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col text-center">
+                                <div class="block-27">
+                                    <ul>
+                                    {% if select_beer.has_previous %}
+                                    <li><a href="?page=1">1</a></li>
+                                    <li><a href="?page={{ select_beer.previous_page_number }}">&lt;</a></li>
+                                    {% endif %}
+                                    <li class="active"><span>{{ select_beer.number }}</span></li>
+                                    {% if select_beer.has_next %}
+                                    <li><a href="?page={{ select_beer.next_page_number }}">&gt;</a></li>
+                                    <li><a href="?page={{ select_beer.paginator.num_pages }}">{{ select_beer.paginator.num_pages }}</a></li>
+                                    {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    </div>            
+                </div>
+            </div>           
+    </section>
+{% endblock content %}
